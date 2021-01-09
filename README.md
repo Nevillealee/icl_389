@@ -23,3 +23,18 @@ Things you may want to cover:
 
 * ...
 # icl_389
+https://www.youtube.com/watch?v=7v2EMmfBJL8
+https://support.google.com/calendar/answer/41207?hl=en
+https://edgeguides.rubyonrails.org/active_storage_overview.html
+
+ add .env file
+ set up database.yml
+ $ bundle exec rails webpacker:install
+ $ yarn upgrade
+ $ yarn install
+ $ rails g devise:install
+ $ rails g devise User
+ $ rails g devise:views
+ $ rails db:migrate
+ $ rails s
+ $ bin/webpack-dev-server(2nd terminal tab)
