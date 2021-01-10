@@ -1,0 +1,43 @@
+<h1>Posts</h1>
+
+<% if @posts.present? %>
+    <table>
+    <thead>
+        <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th>User</th>
+        <th>Posted<th>
+        <th colspan="4"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+            <td><%= post.title %></td>
+            <td><%= post.body %></td>
+            <td><%= post.user.username %></td>
+            <% if post.updated_at < 1.day.ago %> 
+                <td><%= post.updated_at.localtime.strftime('%b %d, %Y') %></td>
+            <% elsif post.updated_at.localtime < 3.hours.ago %>
+                <td><%= post.updated_at.localtime.strftime('%-I:%S %p') %></td>
+            <% else %>
+             <td><%= distance_of_time_in_words(Time.now - post.updated_at) %> ago</td>
+            <% end %>
+            <td><%= link_to 'Show', post %></td>
+            <% if current_user.id == post.user.id %>
+                <td><%= link_to 'Edit', edit_post_path(post) %></td>
+            <% end %>
+            <% if current_user.id == post.user.id || current_user.admin? %>
+                <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+
+    <br>
+
+<% end %>
+    <%= link_to 'New Post', new_post_path %>
